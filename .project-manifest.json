@@ -1,0 +1,52 @@
+{
+  "project_shape": "backend",
+  "modules": [
+    {
+      "id": "__main__",
+      "path": "coneread/__main__.py"
+    },
+    {
+      "id": "intake",
+      "path": "coneread/intake.py"
+    },
+    {
+      "id": "ordinal",
+      "path": "coneread/ordinal.py"
+    },
+    {
+      "id": "pipeline",
+      "path": "coneread/pipeline.py"
+    }
+  ],
+  "workflows": [
+    {
+      "id": "report",
+      "name": "离线数据报告",
+      "entry": "python3 -B -m coneread examples/demo.json",
+      "success": "把模拟票据转换成架位的序位集合和证据，供配方目标带数据分析。",
+      "failure": "格式错误退出 2，例如：invalid or repeated witness",
+      "verification": "python3 -B examples/smoke.py",
+      "module_ids": [
+        "__main__",
+        "intake",
+        "ordinal",
+        "pipeline"
+      ],
+      "steps": [
+        "读取样例与验证来源数据",
+        "计算并核对结构化报告或拒绝诊断"
+      ]
+    }
+  ],
+  "complexity": {
+    "mechanisms": [
+      {
+        "id": "domain-report",
+        "workflow_ids": [
+          "report"
+        ],
+        "behavior": "ordinal endpoints, witness preservation, and contradictory evidence"
+      }
+    ]
+  }
+}

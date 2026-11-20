@@ -1,0 +1,8 @@
+{
+  "rank_ceiling": 9, "band": [4, 5], "cone_ranks": {"q4":4, "q5":5, "q6":6},
+  "racks": [
+    {"id":"upper", "witnesses":[{"ticket":"up-a", "cone":"q4", "reading":"fallen"}, {"ticket":"up-b", "cone":"q6", "reading":"upright"}]},
+    {"id":"side", "witnesses":[{"ticket":"side-a", "cone":"q5", "reading":"bending"}, {"ticket":"side-b", "cone":"q6", "reading":"unreadable"}]},
+    {"id":"door", "witnesses":[{"ticket":"door-a", "cone":"q4", "reading":"upright"}, {"ticket":"door-b", "cone":"q6", "reading":"fallen"}]}
+  ]
+}
