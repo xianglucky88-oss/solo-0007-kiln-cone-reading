@@ -1,0 +1,38 @@
+{
+  "rank_ceiling": 9,
+  "band": [4, 6],
+  "cone_ranks": {"q3": 3, "q4": 4, "q5": 5, "q6": 6, "q7": 7, "q8": 8},
+  "racks": [
+    {
+      "id": "merge-rack",
+      "witnesses": [
+        {"ticket": "m-t1", "cone": "q4", "reading": "fallen"},
+        {"ticket": "m-t2", "cone": "q5", "reading": "upright"},
+        {"ticket": "m-t3", "cone": "q3", "reading": "bending"}
+      ]
+    },
+    {
+      "id": "fallback-rack",
+      "witnesses": [
+        {"ticket": "f-t1", "cone": "q6", "reading": "fallen"},
+        {"ticket": "f-t2", "cone": "q8", "reading": "upright"},
+        {"ticket": "f-t3", "cone": "q4", "reading": "unreadable"}
+      ]
+    },
+    {
+      "id": "middle-rack",
+      "witnesses": [
+        {"ticket": "d-t1", "cone": "q3", "reading": "fallen"},
+        {"ticket": "d-t2", "cone": "q8", "reading": "upright"},
+        {"ticket": "d-t3", "cone": "q5", "reading": "bending"}
+      ]
+    },
+    {
+      "id": "missing-rack",
+      "witnesses": [
+        {"ticket": "x-t1", "cone": "q7", "reading": "fallen"},
+        {"ticket": "x-t2", "cone": "q4", "reading": "upright"}
+      ]
+    }
+  ]
+}

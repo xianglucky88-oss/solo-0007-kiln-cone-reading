@@ -16,6 +16,18 @@
     {
       "id": "pipeline",
       "path": "coneread/pipeline.py"
+    },
+    {
+      "id": "migration",
+      "path": "coneread/migration/__init__.py"
+    },
+    {
+      "id": "migration-corrections",
+      "path": "coneread/migration/corrections.py"
+    },
+    {
+      "id": "migration-main",
+      "path": "coneread/migration/__main__.py"
     }
   ],
   "workflows": [
@@ -36,6 +48,25 @@
         "读取样例与验证来源数据",
         "计算并核对结构化报告或拒绝诊断"
       ]
+    },
+    {
+      "id": "migration",
+      "name": "锥目录迁移与更正重放",
+      "entry": "python3 -B -m coneread.migration examples/migration_old.json examples/migration_spec.json",
+      "success": "输出旧侧与新侧配方带裁定、端点、逐票约束差异、映射裁定与缺码票",
+      "failure": "迁移说明或更正非法时退出 2，例如：explicit_mapping targets unknown new cone",
+      "verification": "python3 -B examples/migration_smoke.py",
+      "module_ids": [
+        "migration",
+        "migration-corrections",
+        "migration-main",
+        "intake",
+        "ordinal"
+      ],
+      "steps": [
+        "解析旧文档与迁移说明，按显式映射、同名回退、缺码裁定每个旧码",
+        "生成双侧报告与逐票差异，增量应用更正并与全量重放核对"
+      ]
     }
   ],
   "complexity": {
@@ -46,6 +77,13 @@
           "report"
         ],
         "behavior": "ordinal endpoints, witness preservation, and contradictory evidence"
+      },
+      {
+        "id": "catalog-migration",
+        "workflow_ids": [
+          "migration"
+        ],
+        "behavior": "explicit mapping with name fallback, code merges, missing-code tickets, correction impact scoping, and full replay consistency"
       }
     ]
   }

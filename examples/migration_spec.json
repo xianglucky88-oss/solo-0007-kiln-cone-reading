@@ -1,0 +1,11 @@
+{
+  "new_rank_ceiling": 9,
+  "new_band": [4, 6],
+  "new_cone_ranks": {"n3": 3, "n4": 4, "n5": 5, "n6": 6, "q6": 6, "q8": 8},
+  "explicit_mapping": {
+    "q3": "n3",
+    "q4": "n4",
+    "q5": "n4",
+    "q8": "q8"
+  }
+}

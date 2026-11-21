@@ -7,7 +7,8 @@ def text(value, field):
     return value
 
 
-def parse(document):
+def parse_named(document):
+    """Parse the unchanged input contract, keeping each witness's cone name."""
     maximum = document['rank_ceiling']
     if type(maximum) is not int or not 2 <= maximum <= 999:
         raise ValueError('rank_ceiling must be 2 through 999')
@@ -35,8 +36,16 @@ def parse(document):
                 raise ValueError(f'invalid or repeated witness: {name}/{ticket}')
             ticket_ids.add(ticket)
             seen.add(cone)
-            rows.append((ticket, reading, catalog[cone]))
+            rows.append((ticket, cone, reading, catalog[cone]))
         racks[name] = sorted(rows)
     if not racks:
         raise ValueError('expect at least one rack')
+    return maximum, band, catalog, racks
+
+
+def parse(document):
+    maximum, band, _catalog, named_racks = parse_named(document)
+    racks = {name: [(ticket, reading, rank)
+                    for ticket, _cone, reading, rank in rows]
+             for name, rows in named_racks.items()}
     return maximum, band, racks
