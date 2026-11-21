@@ -1,0 +1,42 @@
+{
+  "version": 2,
+  "rank_ceiling": 9,
+  "band": [4, 5],
+  "budget": 1,
+  "cone_ranks": {"q1": 1, "q2": 2, "q3": 3, "q4": 4, "q5": 5, "q6": 6, "q7": 7},
+  "racks": [
+    {
+      "id": "upper",
+      "witnesses": [
+        {"ticket": "up-f5", "cone": "q5", "reading": "fallen"},
+        {"ticket": "up-u4", "cone": "q4", "reading": "upright"},
+        {"ticket": "up-u4-dup", "cone": "q4", "reading": "upright"},
+        {"ticket": "up-note", "cone": "q6", "reading": "unreadable"}
+      ]
+    },
+    {
+      "id": "link",
+      "budget": 2,
+      "witnesses": [
+        {"ticket": "ln-f2", "cone": "q2", "reading": "fallen"},
+        {"ticket": "ln-f3", "cone": "q3", "reading": "fallen"},
+        {"ticket": "ln-u1", "cone": "q1", "reading": "upright"}
+      ]
+    },
+    {
+      "id": "split",
+      "witnesses": [
+        {"ticket": "sp-hi", "cone": "q7", "reading": "fallen"},
+        {"ticket": "sp-lo", "cone": "q4", "reading": "upright"},
+        {"ticket": "sp-note", "cone": "q4", "reading": "unreadable"}
+      ]
+    },
+    {
+      "id": "door",
+      "witnesses": [
+        {"ticket": "dr-u", "cone": "q4", "reading": "upright"},
+        {"ticket": "dr-f", "cone": "q6", "reading": "fallen"}
+      ]
+    }
+  ]
+}
