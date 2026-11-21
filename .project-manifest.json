@@ -16,6 +16,14 @@
     {
       "id": "pipeline",
       "path": "coneread/pipeline.py"
+    },
+    {
+      "id": "archive",
+      "path": "coneread/archive.py"
+    },
+    {
+      "id": "matching",
+      "path": "coneread/matching.py"
     }
   ],
   "workflows": [
@@ -30,11 +38,34 @@
         "__main__",
         "intake",
         "ordinal",
-        "pipeline"
+        "pipeline",
+        "archive",
+        "matching"
       ],
       "steps": [
         "读取样例与验证来源数据",
         "计算并核对结构化报告或拒绝诊断"
+      ]
+    },
+    {
+      "id": "archive-report",
+      "name": "包架归档对账",
+      "entry": "python3 -B -m coneread examples/archive.json",
+      "success": "全量对账时列出可参与完整归属的配对、真允许序位、带内架数最小/最大值及两套可重放取值；不可能时区分三类原因并给出票据。",
+      "failure": "格式错误退出 2，例如：repeated handoff ticket",
+      "verification": "python3 -B examples/smoke.py",
+      "module_ids": [
+        "__main__",
+        "intake",
+        "ordinal",
+        "pipeline",
+        "archive",
+        "matching"
+      ],
+      "steps": [
+        "校验包、架、交接票与每架配方带",
+        "按候选配对求完整归属并评估带内/带外",
+        "输出可重放结果或可区分的失败诊断"
       ]
     }
   ],
@@ -46,6 +77,13 @@
           "report"
         ],
         "behavior": "ordinal endpoints, witness preservation, and contradictory evidence"
+      },
+      {
+        "id": "bundle-rack-reconciliation",
+        "workflow_ids": [
+          "archive-report"
+        ],
+        "behavior": "one-to-one bundle/rack assignment with per-pair handoff windows, honest in-band extremes and three distinct impossible causes"
       }
     ]
   }

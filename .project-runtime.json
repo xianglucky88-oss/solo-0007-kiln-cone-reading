@@ -10,6 +10,10 @@
     {
       "workflow_id": "report",
       "command": "python3 -B examples/smoke.py"
+    },
+    {
+      "workflow_id": "archive-report",
+      "command": "python3 -B examples/smoke.py"
     }
   ]
 }
